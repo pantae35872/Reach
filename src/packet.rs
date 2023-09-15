@@ -35,46 +35,53 @@ impl Packet {
     }
 
     // Write
-    pub fn write_bytes(&mut self, data: &[u8]) {
+    pub fn write_bytes(&mut self, data: &[u8]) -> &mut self::Packet {
         if data.len() <= BUFFER_LIMIT - self.buf.len() {
             self.buf.extend_from_slice(&data);
         } else {
             self.buf.extend_from_slice(&data[..BUFFER_LIMIT - self.buf.len()]);
         }
+        return self;
     }
     
-    pub fn write_i32(&mut self, data: &i32) {
+    pub fn write_i32(&mut self, data: &i32) -> &mut self::Packet {
         let i32_bytes: &[u8; 4] = &i32::to_be_bytes(*data);
         self.write_bytes(i32_bytes);
+        return self;
     }
 
-    pub fn write_string(&mut self, data: &String) {
+    pub fn write_string(&mut self, data: &String) -> &mut self::Packet {
         let data_bytes: &[u8] = data.as_bytes();
         self.write_i64(&(data_bytes.len() as i64));
         self.write_bytes(data_bytes);
+        return self;
     }
 
-    pub fn write_bool(&mut self, data: &bool) {
+    pub fn write_bool(&mut self, data: &bool) -> &mut self::Packet {
         if *data {
             self.write_bytes(&[1u8]);
         } else {
             self.write_bytes(&[0u8]);
         }
+        return self;
     }
 
-    pub fn write_i64(&mut self, data: &i64) {
+    pub fn write_i64(&mut self, data: &i64) -> &mut self::Packet {
         let i64_bytes: &[u8; 8] = &i64::to_be_bytes(*data);
         self.write_bytes(i64_bytes);
+        return self;
     }
 
-    pub fn write_f32(&mut self, data: &f32) {
+    pub fn write_f32(&mut self, data: &f32) -> &mut self::Packet {
         let f32_bytes: &[u8; 4] = &f32::to_be_bytes(*data);
         self.write_bytes(f32_bytes);
+        return self;
     } 
     
-    pub fn write_f64(&mut self, data: &f64) {
+    pub fn write_f64(&mut self, data: &f64) -> &mut self::Packet {
         let f64_bytes: &[u8; 8] = &f64::to_be_bytes(*data);
         self.write_bytes(f64_bytes);
+        return self;
     }
 
     //Read
@@ -131,7 +138,7 @@ impl Packet {
 
     //etc
 
-    pub fn to_array(&self) -> [u8; 1024] {
+    pub fn build(&self) -> [u8; 1024] {
         let data = &self.buf;
         let mut return_byte: [u8; 1024] = [0; 1024];
         if data.len() <= 1024 {
@@ -143,7 +150,7 @@ impl Packet {
         return return_byte;
     }
 
-    pub fn length(&self) -> i64 {
-        self.buf.len() as i64
+    pub fn length(&self) -> (i64, &self::Packet) {
+        (self.buf.len() as i64, self)
     }
 }

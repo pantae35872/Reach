@@ -88,7 +88,7 @@ impl Client {
                         let stream: Option<&mut TcpStream> = stream_opt.as_mut();
                         match stream {
                             Some(stream) => {
-                                stream.write(&packet.to_array()).await.unwrap();
+                                stream.write(&packet.build()).await.unwrap();
                             }
                             None => {},
                         }
