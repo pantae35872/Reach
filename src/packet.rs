@@ -150,7 +150,7 @@ impl Packet {
         return return_byte;
     }
 
-    pub fn length(&self) -> i64 {
-        self.buf.len() as i64
+    pub fn length(&self) -> (i64, &self::Packet) {
+        (self.buf.len() as i64, self)
     }
 }
