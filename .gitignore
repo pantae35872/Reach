@@ -1,5 +1,4 @@
 /Server/reach_server/target/
-/Client/reach/
 !/Client/reach/lib/
 !/Client/reach/windows/
 !/Client/reach/assets/
@@ -15,3 +14,4 @@
 !/Client/reach/pubspec.lock
 !/Client/reach/pubspec.yaml
 !/Client/reach/reach.iml
+/Client/reach/
