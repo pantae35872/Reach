@@ -1,0 +1,11 @@
+D:\Reach\Server\reach_server\target\x86_64-unknown-linux-gnu\debug\deps\socket2-542cffc43b2dae8f.rmeta: C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\lib.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockaddr.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\socket.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockref.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sys\unix.rs
+
+D:\Reach\Server\reach_server\target\x86_64-unknown-linux-gnu\debug\deps\libsocket2-542cffc43b2dae8f.rlib: C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\lib.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockaddr.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\socket.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockref.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sys\unix.rs
+
+D:\Reach\Server\reach_server\target\x86_64-unknown-linux-gnu\debug\deps\socket2-542cffc43b2dae8f.d: C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\lib.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockaddr.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\socket.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockref.rs C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sys\unix.rs
+
+C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\lib.rs:
+C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockaddr.rs:
+C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\socket.rs:
+C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockref.rs:
+C:\Users\Pantae\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sys\unix.rs:
