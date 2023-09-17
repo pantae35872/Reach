@@ -7,7 +7,7 @@ use server::Server;
 use tokio::{sync::{Mutex, mpsc::{Sender, Receiver}}, time::{sleep, Instant}};
 use lazy_static::lazy_static;
 
-pub const MAX_CLIENTS: i64 = (10000)+1;
+pub const MAX_CLIENTS: i64 = (10)+1;
 pub const BUFFER_SIZE: usize = 1024;
 
 mod client;
