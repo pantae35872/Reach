@@ -30,23 +30,29 @@ impl Server {
         for i in 1..MAX_CLIENTS {
             let (client_sender, client_receiver ) = channel::<S2CCommand>(32);
             let (server_sender, server_receiver ) = channel::<C2SCommand>(32);
-            let client = Client::new(Arc::clone(&self.server_handle_map));
-            self.clients.insert(i, Arc::new(Mutex::new(client)));
+            let client = Arc::new(Mutex::new(Client::new(Arc::clone(&self.server_handle_map))));
+
+            let client_receiver = Arc::new(Mutex::new(client_receiver));
+            let server_sender = Arc::new(Mutex::new(server_sender));
+
+            self.clients.insert(i, Arc::clone(&client));
             let mut clients_sender = CLIENTS_SENDER.lock().await;
-            clients_sender.insert(i, client_sender.clone());
-            self.clients_receiver.insert(i, Arc::new(Mutex::new(client_receiver)));
-            self.server_sender.insert(i, Arc::new(Mutex::new(server_sender)));
-            let mut server_receiver_a = SERVER_RECEIVER.lock().await;
-            server_receiver_a.insert(i, Arc::new(Mutex::new(server_receiver)));
+            clients_sender.insert(i, Arc::from(client_sender));
+
+            self.clients_receiver.insert(i, Arc::clone(&client_receiver));
+            self.server_sender.insert(i, Arc::clone(&server_sender));
+
+            let mut server_receivers = SERVER_RECEIVER.lock().await;
+            server_receivers.insert(i, Arc::new(Mutex::new(server_receiver)));
+
             let mut is_client_active = IS_CLIENT_ACTIVE.lock().await;
             is_client_active.insert(i, false);
-        }
-        for (key, value) in &self.clients {
-            let receiver_clone = Arc::clone(self.clients_receiver.get(&key).unwrap());
-            let sender_clone = Arc::clone(self.server_sender.get(&key).unwrap());
-            let client_clone = Arc::clone(value);
+
+            let receiver_clone = Arc::clone(&client_receiver);
+            let sender_clone = Arc::clone(&server_sender);
+            let client_clone = Arc::clone(&client);
             tokio::spawn(async move {
-                client_clone.lock().await.main_thread(receiver_clone, sender_clone).await;
+                client_clone.lock().await.main_thread(&receiver_clone, &sender_clone).await;
             });
         }
     }

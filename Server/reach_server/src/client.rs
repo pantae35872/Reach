@@ -21,7 +21,7 @@ impl Client {
         }
     }
 
-    pub async fn main_thread(&mut self, receiver: Arc<Mutex<Receiver<S2CCommand>>>, sender: Arc<Mutex<Sender<C2SCommand>>>) -> ! {
+    pub async fn main_thread(&mut self, receiver: &Arc<Mutex<Receiver<S2CCommand>>>, sender: &Arc<Mutex<Sender<C2SCommand>>>) -> ! {
         let mut buffer: Vec<u8> = vec![8; BUFFER_SIZE];
         let mut disconnect: bool = false;
         loop {
