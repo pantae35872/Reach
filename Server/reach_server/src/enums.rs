@@ -6,7 +6,7 @@ pub enum S2CCommand {
     SetStream(TcpStream),
     SetActive(bool),
     SetId(i64),
-    SendData(Packet),
+    SendData(Packet, bool),
     GetActive()
 }
 

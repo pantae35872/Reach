@@ -1,0 +1,10 @@
+^D:\REACH\CLIENT\REACH\BUILD\WINDOWS\CMAKEFILES\1B7506A30BE1123DC47ED4E7300B52BC\GENERATE.STAMP.RULE
+setlocal
+"E:\Vistual Studio\2022 IDE\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Reach/Client/reach/windows -BD:/Reach/Client/reach/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Reach/Client/reach/build/windows/reach.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

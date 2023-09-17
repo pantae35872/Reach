@@ -10,7 +10,5 @@ class ClientHandle {
     Client.id = id;
     ClientSend.Welcome();
     print(Client.id);
-    print(packet.read_bool());
-    print(packet.read_string());
   }
 }

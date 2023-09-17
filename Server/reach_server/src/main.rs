@@ -2,6 +2,7 @@ use std::{collections::HashMap, sync::Arc, time::Duration, fs};
 
 use encryption::Encryption;
 use enums::{S2CCommand, C2SCommand};
+use packet::Packet;
 use server::Server;
 use tokio::{sync::{Mutex, mpsc::{Sender, Receiver}}, time::{sleep, Instant}};
 use lazy_static::lazy_static;
@@ -25,7 +26,7 @@ lazy_static! {
 }
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>>{
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut server = Server::new();
     server.initialize_server().await;
     server.start_server().await;
