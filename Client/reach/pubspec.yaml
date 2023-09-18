@@ -14,8 +14,10 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   bitsdojo_window:
-  fixnum:
-  cryptography:
+  fixnum:	
+  encrypt: ^5.0.1
+  pointycastle: ^3.7.3
+  basic_utils:
 
 
 dev_dependencies:

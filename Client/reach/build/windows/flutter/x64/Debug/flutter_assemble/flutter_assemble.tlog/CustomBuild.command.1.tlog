@@ -1,0 +1,28 @@
+^D:\REACH\CLIENT\REACH\BUILD\WINDOWS\CMAKEFILES\A0490E9FB9C7688960CBB009C2C80707\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"E:\Vistual Studio\2022 IDE\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=D:\FlutterEnv\flutter PROJECT_DIR=D:\Reach\Client\reach FLUTTER_ROOT=D:\FlutterEnv\flutter FLUTTER_EPHEMERAL_DIR=D:\Reach\Client\reach\windows\flutter\ephemeral PROJECT_DIR=D:\Reach\Client\reach FLUTTER_TARGET=D:\Reach\Client\reach\lib\main.dart DART_DEFINES=Zmx1dHRlci5pbnNwZWN0b3Iuc3RydWN0dXJlZEVycm9ycz1mYWxzZQ==,RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==,RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9iMjAxODNlMDQwOTYwOTRiY2MzN2Q5Y2RlMmE0Yjk2ZjVjYzY4NGNmLw== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=D:\Reach\Client\reach\.dart_tool\package_config.json D:/FlutterEnv/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\REACH\CLIENT\REACH\BUILD\WINDOWS\CMAKEFILES\CCCC36CAFFFB8B73950494C9BE4D7A7E\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\REACH\CLIENT\REACH\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"E:\Vistual Studio\2022 IDE\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/Reach/Client/reach/windows -BD:/Reach/Client/reach/build/windows --check-stamp-file D:/Reach/Client/reach/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
