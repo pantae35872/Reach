@@ -1,3 +1,10 @@
 /Server/reach_server/target/
+/key/decrypted_private_key.pem
+/key/private_key.pem
+/key/public_key.pem
 /Client/reach/installers/
 /Client/reach/.vscode/
+/Client/reach/.dart_tool/
+/Client/reach/build/
+/Client/reach/.flutter-plugins-dependencies
+/Client/reach/.flutter-plugins
