@@ -1,15 +1,13 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:typed_data';
-import 'package:fixnum/fixnum.dart';
 
-const BUFFER_LIMIT = 1024;
+const BUFFER_LIMIT = 4096;
 
 enum C2SPacket {
-  Welcome 
+  ReceiveKey,
 }
 enum S2CPacket {
-  GetId
+  GetId,
 }
 class Packet {
   List<int> bytes = [];

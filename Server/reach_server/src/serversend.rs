@@ -1,5 +1,3 @@
-use std::sync::Arc;
-
 use crate::{packet::Packet, enums::{S2CCommand, S2CPacket}, CLIENTS_SENDER};
 
 pub async fn send_data(to_client: &i64, packet: Packet, encrypt: &bool) {

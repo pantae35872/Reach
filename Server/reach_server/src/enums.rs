@@ -7,7 +7,9 @@ pub enum S2CCommand {
     SetActive(bool),
     SetId(i64),
     SendData(Packet, bool),
-    GetActive()
+    GetActive(),
+    SetKey([u8; 16]),
+    SetIv([u8; 16])
 }
 
 pub enum C2SCommand {
@@ -15,17 +17,17 @@ pub enum C2SCommand {
 }
 
 pub enum C2SPacket{
-    Welcome = 0,
+    ReceiveKey = 0,
 }
 
 pub enum S2CPacket {
-    GetId
+    GetId = 0,
 }
 
 impl C2SPacket {
     pub async fn call(&self, id: &i64, packet: &mut Packet) {
         match self {
-            C2SPacket::Welcome => server_handle::welcome(id, packet).await,
+            C2SPacket::ReceiveKey => server_handle::receive_key(id, packet).await,
         }
     }
 }

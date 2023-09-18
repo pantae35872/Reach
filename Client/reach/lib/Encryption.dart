@@ -1,6 +1,10 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:encrypt/encrypt.dart' as Encrypt;
+import 'package:pointycastle/export.dart';
+import 'package:basic_utils/basic_utils.dart';
+import 'package:flutter/services.dart';
 
 class Encryption {
   List<int> buffer = [];
@@ -33,6 +37,17 @@ class Encryption {
   Encryption aes_decrypt() {
     final encryptService = Encrypt.Encrypter(Encrypt.AES(Encrypt.Key(Uint8List.fromList(aes.key)), mode: Encrypt.AESMode.cbc));
     buffer = encryptService.decryptBytes(Encrypt.Encrypted(Uint8List.fromList(buffer)), iv: Encrypt.IV(Uint8List.fromList(aes.iv)));
+    return this;
+  }
+
+  Future<Encryption> rsa_encrypt() async {
+    await File('D:\\Reach\\key\\public_key.pem').readAsString().then((String contents) async {
+      var public = CryptoUtils.rsaPublicKeyFromPem(contents);
+      var cipher = PKCS1Encoding(RSAEngine());
+      cipher.init(true, PublicKeyParameter<RSAPublicKey>(public));
+      final cipherText = cipher.process(Uint8List.fromList(buffer));
+      buffer = cipherText.toList();
+    });
     return this;
   }
 

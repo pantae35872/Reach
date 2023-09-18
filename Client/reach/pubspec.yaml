@@ -16,6 +16,8 @@ dependencies:
   bitsdojo_window:
   fixnum:	
   encrypt: ^5.0.1
+  pointycastle: ^3.7.3
+  basic_utils:
 
 
 dev_dependencies:

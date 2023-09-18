@@ -9,8 +9,7 @@ type Aes128CbcEnc = cbc::Encryptor<aes::Aes128>;
 type Aes128CbcDec = cbc::Decryptor<aes::Aes128>;
 
 pub struct Encryption {
-    buffer: [u8; BUFFER_SIZE],
-    buffer_len: usize,
+    buffer: Vec<u8>,
     pub aes: Aes,
     pub rsa: Rsa
 }
@@ -29,15 +28,12 @@ impl Encryption {
         Self { 
             aes: Aes::new(),
             rsa: Rsa::new(PRIVATE_KEY.lock().await.to_string()),
-            buffer_len: 0,
-            buffer: [0u8; 1024]
+            buffer: Vec::with_capacity(BUFFER_SIZE)
         }
     }
 
     pub fn set_data(&mut self, data: &Arc<&[u8]>) -> &mut Self {
-        let len = data.len().min(self.buffer.len());
-        self.buffer[..len].copy_from_slice(&data[..len]);
-        self.buffer_len = len;
+        self.buffer = data.to_vec();
         self
     } 
 
@@ -52,30 +48,34 @@ impl Encryption {
     }
 
     pub fn aes_encrypt(&mut self) -> &mut Self {
-        let end = Aes128CbcEnc::new(self.aes.get_key().into(), self.aes.get_iv().into())
-        .encrypt_padded_b2b_mut::<Pkcs7>(&self.buffer.clone()[..self.buffer_len], &mut self.buffer)
+        let mut out_buffer = [0u8; BUFFER_SIZE];
+        let buffer_slice = self.buffer.as_slice().clone();
+        let result = Aes128CbcEnc::new(self.aes.get_key().into(), self.aes.get_iv().into())
+        .encrypt_padded_b2b_mut::<Pkcs7>(buffer_slice, &mut out_buffer)
         .unwrap();
-        self.buffer_len = end.len();
+        self.buffer = Vec::from(result);
         self
     }
 
     pub fn aes_decrypt(&mut self) -> &mut Self {
-        let ded = Aes128CbcDec::new(self.aes.get_key().into(), self.aes.get_iv().into())
-        .decrypt_padded_b2b_mut::<Pkcs7>(&self.buffer.clone()[..self.buffer_len], &mut self.buffer)
+        let mut out_buffer = [0u8; BUFFER_SIZE];
+        let buffer_slice = self.buffer.as_slice().clone();
+        let result = Aes128CbcDec::new(self.aes.get_key().into(), self.aes.get_iv().into())
+        .decrypt_padded_b2b_mut::<Pkcs7>(buffer_slice, &mut out_buffer)
         .unwrap();
-        self.buffer_len = ded.len();
+        self.buffer = Vec::from(result);
         self
     }
 
     pub fn rsa_decrypt(&mut self) -> &mut Self {
         let priv_key = &self.rsa.priv_key;
-        let e_buffer = &self.buffer.clone()[..self.buffer_len]; 
-        self.buffer.copy_from_slice(priv_key.decrypt(Pkcs1v15Encrypt, e_buffer).expect("failed to decrypt").as_slice());
+        let e_buffer = &self.buffer.clone(); 
+        self.buffer = priv_key.decrypt(Pkcs1v15Encrypt, e_buffer).expect("failed to decrypt");
         self
     }
 
     pub fn build(&self) -> &[u8] {
-        &self.buffer[0..self.buffer_len]
+        &self.buffer
     }
 }
 

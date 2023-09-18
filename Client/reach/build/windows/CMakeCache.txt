@@ -195,6 +195,15 @@ bitsdojo_window_windows_IS_TOP_LEVEL:STATIC=OFF
 bitsdojo_window_windows_SOURCE_DIR:STATIC=D:/Reach/Client/reach/windows/flutter/ephemeral/.plugin_symlinks/bitsdojo_window_windows/windows
 
 //Value Computed by CMake
+fast_rsa_BINARY_DIR:STATIC=D:/Reach/Client/reach/build/windows/plugins/fast_rsa
+
+//Value Computed by CMake
+fast_rsa_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+fast_rsa_SOURCE_DIR:STATIC=D:/Reach/Client/reach/windows/flutter/ephemeral/.plugin_symlinks/fast_rsa/windows
+
+//Value Computed by CMake
 reach_BINARY_DIR:STATIC=D:/Reach/Client/reach/build/windows
 
 //Value Computed by CMake

@@ -2,7 +2,7 @@ use std::{sync::Arc, time::Duration, collections::HashMap};
 
 use tokio::{sync::{Mutex, mpsc::{Receiver, Sender}}, time::sleep, io::AsyncWriteExt, net::TcpStream};
 
-use crate::{enums::{S2CCommand, C2SCommand, C2SPacket}, packet::Packet, BUFFER_SIZE, encryption::{self, Encryption}};
+use crate::{enums::{S2CCommand, C2SCommand, C2SPacket}, packet::Packet, BUFFER_SIZE, encryption::Encryption};
 
 pub struct Client {
     pub id: i64,
@@ -51,6 +51,7 @@ impl Client {
                         }
                         
                         let receive_data_clone: [u8; BUFFER_SIZE] = fixed_received_data.clone();
+                        let receive_data_len = receive_data.len();
                         let server_handle_map = Arc::clone(&self.server_handle_map);
                         let id = self.id.clone();
                         let key = Arc::clone(&self.key);
@@ -58,10 +59,10 @@ impl Client {
                         tokio::spawn(async move {
                             let key = key.lock().await;
                             let iv = iv.lock().await;
-                            let mut packet = Packet::new_with_data(&receive_data_clone);
+                            let mut packet = Packet::new_with_data(&receive_data_clone[..receive_data_len]);
                             let encrypt = &packet.read_bool();
                             let data_vec = packet.read_bytes(&(packet.length().0 - 1));
-                            let data = data_vec.as_slice();
+                            let data = &data_vec.as_slice()[..data_vec.len()];
                             if *encrypt {
                                 if key.is_some() && iv.is_some() {
                                     let mut encryption = Encryption::new().await;
@@ -128,6 +129,16 @@ impl Client {
                             }
                             None => {},
                         }
+                    },
+                    S2CCommand::SetKey(_key) => {
+                        let key = Arc::clone(&self.key);
+                        let mut key = key.lock().await;
+                        *key = Some(_key);
+                    },
+                    S2CCommand::SetIv(_iv) => {
+                        let iv = Arc::clone(&self.iv);
+                        let mut iv = iv.lock().await;
+                        *iv = Some(_iv);
                     }
                 }
             }
@@ -135,9 +146,17 @@ impl Client {
     }
 
     pub async fn disconnect(&mut self) {
-        println!("disconnecting from client");
-        self.stream = Arc::new(Mutex::new(None));
+        println!("disconnecting from client id: {}", self.id);
         self.id = 0;
         self.active = false;
+        let stream = Arc::clone(&self.stream);
+        let key = Arc::clone(&self.key);
+        let iv = Arc::clone(&self.iv);
+        let mut iv = iv.lock().await;
+        let mut key = key.lock().await;
+        let mut stream = stream.lock().await;
+        *key = None;
+        *iv = None;
+        *stream = None;
     }
 }

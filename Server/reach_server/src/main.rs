@@ -1,14 +1,12 @@
 use std::{collections::HashMap, sync::Arc, time::Duration, fs};
 
-use encryption::Encryption;
 use enums::{S2CCommand, C2SCommand};
-use packet::Packet;
 use server::Server;
-use tokio::{sync::{Mutex, mpsc::{Sender, Receiver}}, time::{sleep, Instant}};
+use tokio::{sync::{Mutex, mpsc::{Sender, Receiver}}, time::sleep};
 use lazy_static::lazy_static;
 
 pub const MAX_CLIENTS: i64 = (10)+1;
-pub const BUFFER_SIZE: usize = 1024;
+pub const BUFFER_SIZE: usize = 4096;
 
 mod client;
 mod server;

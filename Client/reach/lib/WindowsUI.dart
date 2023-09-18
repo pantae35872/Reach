@@ -1,17 +1,11 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:reach/Client.dart';
-import 'package:reach/Packet.dart';
 
 Color borderColor = Color(0xFF805306);
 
 String username_input = "";
 
 void LoginButtonPress() async {
-  Client.connect();
 }
 
 

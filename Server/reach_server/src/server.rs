@@ -2,7 +2,7 @@ use std::{collections::HashMap, sync::Arc, time::Duration};
 
 use tokio::{net::{TcpStream, TcpListener}, sync::{Mutex, mpsc::{Sender, Receiver, channel}}, time::sleep};
 
-use crate::{client::Client, MAX_CLIENTS, enums::{S2CCommand, C2SCommand, C2SPacket}, serversend, CLIENTS_SENDER, SERVER_RECEIVER, IS_CLIENT_ACTIVE, encryption::Encryption};
+use crate::{client::Client, MAX_CLIENTS, enums::{S2CCommand, C2SCommand, C2SPacket}, serversend, CLIENTS_SENDER, SERVER_RECEIVER, IS_CLIENT_ACTIVE};
 
 pub struct Server {
     pub clients: HashMap<i64, Arc<Mutex<Client>>>,
@@ -22,7 +22,7 @@ impl Server {
 
     pub async fn initialize_server_handle_map(&mut self) {
         let mut server_handle_map = self.server_handle_map.lock().await;
-        server_handle_map.insert(C2SPacket::Welcome as i64, C2SPacket::Welcome);
+        server_handle_map.insert(C2SPacket::ReceiveKey as i64, C2SPacket::ReceiveKey);
     }
     
     pub async fn initialize_server(&mut self) {
@@ -70,6 +70,7 @@ impl Server {
             loop {
                 match listener.accept().await {
                     Ok(stream) => {
+                        println!("Received Connection from client address {}", stream.1);
                         Server::set_client(stream.0).await;
                     },
                     Err(_) => {

@@ -4,7 +4,6 @@ pub struct Packet {
     pub buf: Vec<u8>,
     pub readpos: i64
 }
-
 impl Packet {
     pub fn new() -> Self {
         Packet {
