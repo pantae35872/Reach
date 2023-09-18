@@ -14,8 +14,20 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "asn1lib",
+      "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/asn1lib-1.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.11.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "basic_utils",
+      "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/basic_utils-5.6.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -98,16 +110,16 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "cryptography",
-      "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/cryptography-2.6.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
       "name": "cupertino_icons",
       "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/cupertino_icons-1.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "encrypt",
+      "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/encrypt-5.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "fake_async",
@@ -146,6 +158,18 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "http",
+      "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "image",
       "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/image-4.0.17",
       "packageUri": "lib/",
@@ -160,6 +184,12 @@
     {
       "name": "json_annotation",
       "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "logging",
+      "rootUri": "file:///C:/Users/Pantae/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -290,7 +320,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-09-17T04:47:30.520423Z",
+  "generated": "2023-09-18T12:33:22.669685Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }
