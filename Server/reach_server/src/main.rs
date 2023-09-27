@@ -28,7 +28,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut server = Server::new();
     server.initialize_server().await;
     server.start_server().await;
-
     loop {
         sleep(Duration::from_secs(1)).await;
     }
